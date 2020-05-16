@@ -1,7 +1,13 @@
 import csv
+import os
+from pathlib import Path
+
+this_folder = os.path.dirname(os.path.abspath(__file__))
+p = Path(this_folder)
+path = str(p.parent) + '/train.csv'
 
 array = []
-path = '/Users/ferdiputra/Google Drive/CUHK/y1t2/CSC 1001/assignment/TEAM PRO/stud_ids/train.csv'
+# path = '/Users/ferdiputra/Documents/GitHub/PlaystoreML/LAST BENERAN/train.csv'
 with open(path, 'r') as file:
     my_reader = csv.reader(file, delimiter=',')
     
@@ -175,7 +181,8 @@ if __name__ == '__main__':
 
     my_tree = build_tree(training_data)
 
-    path2 = '/Users/ferdiputra/Google Drive/CUHK/y1t2/CSC 1001/assignment/TEAM PRO/stud_ids/test.csv'
+    path2 = str(p.parent) + '/test.csv'
+    
     array2 = []
     with open(path2, 'r') as file:
         my_reader2 = csv.reader(file, delimiter=',')
@@ -185,7 +192,6 @@ if __name__ == '__main__':
             array2.append(row)
 
         test_data = array2[1:]
-        # print(test_data)
         pholder2 = []
         float_list2 = []
         for a in test_data:
@@ -201,11 +207,8 @@ if __name__ == '__main__':
     n = 0
     j = 0
 
-    # for row in testing_data:
-    # print(classify(row,my_tree))
     
     for row in testing_data:
-        # print(classify(row,my_tree))
         k = list(classify(row,my_tree))[0] > 6
         m = row[-1] > 6
         if k == m:
