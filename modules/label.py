@@ -3,14 +3,14 @@
 def labelize(categories):
     uniqueCategories = []
     newCategories = []
-    for i in len(range(categories)):
+    for i in range(len(categories)):
         if categories[i] not in uniqueCategories:
             uniqueCategories.append(categories[i])
 
     numeratedCategories = list(enumerate(uniqueCategories))
 
-    for i in len(range(categories)):
-        for j in len(range(numeratedCategories)):
+    for i in range(len(categories)):
+        for j in range(len(numeratedCategories)):
             if numeratedCategories[j][1] == categories[i]:
                 newCategories.append(numeratedCategories[j][0])
     
