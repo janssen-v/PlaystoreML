@@ -7,7 +7,6 @@ p = Path(this_folder)
 path = str(p.parent) + '/train.csv'
 
 array = []
-# path = '/Users/ferdiputra/Documents/GitHub/PlaystoreML/LAST BENERAN/train.csv'
 with open(path, 'r') as file:
     my_reader = csv.reader(file, delimiter=',')
     
@@ -64,14 +63,6 @@ class Question:
         else:
             return val == self.value
 
-    def __repr__(self):
-        # This is just a helper method to print
-        # the question in a readable format.
-        condition = "=="
-        if is_numeric(self.value):
-            condition = ">="
-        return "Is %s %s %s?" % (
-            header[self.column], condition, str(self.value))
 
 
 def partition(rows, question):
