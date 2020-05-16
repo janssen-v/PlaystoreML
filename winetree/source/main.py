@@ -1,9 +1,14 @@
 import csv
+import os
+from pathlib import Path
+
+this_folder = os.path.dirname(os.path.abspath(__file__))
+p = Path(this_folder)
+path = str(p.parent) + '/train.csv'
 
 array = []
-
-
-with open('train.csv', 'r') as file:
+# path = '/Users/ferdiputra/Documents/GitHub/PlaystoreML/LAST BENERAN/train.csv'
+with open(path, 'r') as file:
     my_reader = csv.reader(file, delimiter=',')
     
     # Assign data to list
@@ -11,17 +16,16 @@ with open('train.csv', 'r') as file:
         array.append(row)
 
     train_data = array[1:]
-    # print(type(train_data[0][0]))
     pholder = []
     float_list = []
     for a in train_data:
+        pholder = []
         for b in a:
             pholder.append(float(b))
         float_list.append(pholder)
 
 training_data = float_list
 
-header = ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality']
 
 def unique_vals(rows, col):
     """Find the unique values for a column in a dataset."""
@@ -131,8 +135,7 @@ class Leaf:
         self.predictions = class_counts(rows)
 
 
-class Decision_Node:
-
+class Node:
 
     def __init__(self,
                  question,
@@ -161,7 +164,7 @@ def build_tree(rows):
     false_branch = build_tree(false_rows)
 
 
-    return Decision_Node(question, true_branch, false_branch)
+    return Node(question, true_branch, false_branch)
 
 def classify(row, node):
 
@@ -173,50 +176,44 @@ def classify(row, node):
     else:
         return classify(row, node.false_branch)
 
-def print_leaf(counts):
-    total = sum(counts.values()) * 1.0
-    probs = {}
-    for lbl in counts.keys():
-        probs[lbl] = str(int(counts[lbl] / total * 100)) + "%"
-    return probs
 
 if __name__ == '__main__':
 
     my_tree = build_tree(training_data)
 
+    path2 = str(p.parent) + '/test.csv'
+    
     array2 = []
-    with open('train.csv', 'r') as file:
-        my_reader = csv.reader(file, delimiter=',')
+    with open(path2, 'r') as file:
+        my_reader2 = csv.reader(file, delimiter=',')
         
         # Assign data to list
-        for row in my_reader:
+        for row in my_reader2:
             array2.append(row)
 
-        test_data = array[1:]
-
+        test_data = array2[1:]
         pholder2 = []
         float_list2 = []
         for a in test_data:
+            pholder2 = []
             for b in a:
-                pholder2.append(float(b))
+                b = float(b)
+                pholder2.append(b)
+                
             float_list2.append(pholder2)
-
+    
     testing_data = float_list2
 
     n = 0
     j = 0
 
-    # for row in testing_data:
-    #     print(list(classify(row,my_tree)))
     
     for row in testing_data:
-        k = (list(classify(row,my_tree))[0] > 6)
-        m = ((row[-1]) > 6)
+        k = list(classify(row,my_tree))[0] > 6
+        m = row[-1] > 6
         if k == m:
-            n+=1
             j+=1
-        else:
-            n+=1
-    
-    accuracy = (j/n)*100
+        n += 1
+    accuracy = float(j)/float(n)*100
+    print('Accuracy > ', end='')
     print('{0:1.4f}%'.format(accuracy))

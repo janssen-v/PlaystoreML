@@ -16,7 +16,7 @@ def labelize(categories):
     
     return newCategories
 
-cat = ['A','B','C','A','B','C','A','G','C','G','B','C','G','F','C','A','E','D']
-
-n_cat = labelize(cat)
-print(n_cat)
+if __name__ == "__main__":
+    cat = ['A','B','C','A','B','C','A','G','C','G','B','C','G','F','C','A','E','D']
+    n_cat = labelize(cat)
+    print(n_cat)
