@@ -182,7 +182,7 @@ if __name__ == '__main__':
     my_tree = build_tree(training_data)
 
     path2 = str(p.parent) + '/test.csv'
-    
+
     array2 = []
     with open(path2, 'r') as file:
         my_reader2 = csv.reader(file, delimiter=',')
