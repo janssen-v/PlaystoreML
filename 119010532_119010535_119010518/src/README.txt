@@ -43,7 +43,7 @@ How to use:
 	Once the tree model is built, the test data will be inputed
 	to measure the accuracy of the model. 
 
-Library used:
+Libraries used:
 	csv
 	os
 	Path
