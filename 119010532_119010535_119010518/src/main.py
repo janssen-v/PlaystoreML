@@ -33,8 +33,7 @@ def class_counts(rows): # Counts the number of each type of sample in a dataset.
         counts[label] += 1
     return counts
 
-def is_numeric(value):
-    # Test if a value is numeric. 
+def is_numeric(value): # Test if a value is numeric. 
     return isinstance(value, int) or isinstance(value, float)
 
 class Question:
@@ -44,8 +43,7 @@ class Question:
         self.value = value
 
     def match(self, sample):
-        # Compares the feature value in an sample to the
-        # feature value in this question.
+        # Compares the feature value in an sample to the feature value in this section.
         val = sample[self.column]
         if is_numeric(val):
             return val >= self.value
@@ -69,7 +67,7 @@ def gini(rows):
         impurity -= prob_of_lbl**2
     return impurity
 
-def info_gain(left, right, current_uncertainty):
+def info_gain(left, right, current_uncertainty): # Gets information gain
     p = float(len(left)) / (len(left) + len(right))
     return current_uncertainty - p * gini(left) - (1 - p) * gini(right)
 
@@ -124,7 +122,7 @@ def classify(row, node):
 
 if __name__ == '__main__':
     my_tree = build_tree(training_data)
-    path2 = str(p.parent) + '/test.csv'
+    path2 = str(p.parent) + '/test.csv' # References the current location of the test data
     array2 = []
 
     with open(path2, 'r') as file:
