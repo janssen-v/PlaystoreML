@@ -27,8 +27,8 @@ Dataset used:
 
 Datasets available;
 	train.csv
-	train25.csv
-	train50.csv
+	train-25percent.csv
+	train-50percent.csv
 	test.csv
 
 Usage:
