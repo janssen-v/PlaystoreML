@@ -4,7 +4,7 @@ from pathlib import Path    # Used for easy path referencing
 
 this_folder = os.path.dirname(os.path.abspath(__file__))
 p = Path(this_folder)
-path = str(p.parent) + '/train-50percent.csv'
+path = str(p.parent) + '/train.csv'
 
 array = []
 with open(path, 'r') as file:
