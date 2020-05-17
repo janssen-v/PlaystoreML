@@ -10,7 +10,7 @@ array = []
 with open(path, 'r') as file:
     my_reader = csv.reader(file, delimiter=',')
     
-    for row in my_reader:   # Assign data to list
+    for row in my_reader:   # Allocates data from csv into a list
         array.append(row)
 
     train_data = array[1:]
@@ -24,11 +24,11 @@ with open(path, 'r') as file:
 
 training_data = float_list
 
-def unique_vals(rows, col): # Find the unique values for a column in a dataset.
+def unique_vals(rows, col): # Finds unique values for a column in a dataset
     return set([row[col] for row in rows])
 
-def class_counts(rows): # Counts the number of each type of sample in a dataset.
-    counts = {}         # a dictionary of label -> count.
+def class_counts(rows): # Counts the number of each type of sample in a dataset
+    counts = {}         # a dictionary of label -> count
     for row in rows:    # in our dataset format, the label is always the last column
         label = row[-1]
         if label not in counts:
@@ -36,19 +36,15 @@ def class_counts(rows): # Counts the number of each type of sample in a dataset.
         counts[label] += 1
     return counts
 
-def is_numeric(value):
-    # Test if a value is numeric. 
+def is_numeric(value): # Test if a value is numeric
     return isinstance(value, int) or isinstance(value, float)
 
 class Question:
-
     def __init__(self, column, value):
         self.column = column
         self.value = value
 
-    def match(self, sample):
-        # Compares the feature value in an sample to the
-        # feature value in this question.
+    def match(self, sample): # Compares the feature value in a sample to the feature value in this section
         val = sample[self.column]
         if is_numeric(val):
             return val >= self.value
@@ -72,7 +68,7 @@ def gini(rows):
         impurity -= prob_of_lbl**2
     return impurity
 
-def info_gain(left, right, current_uncertainty):
+def info_gain(left, right, current_uncertainty): # Gets information gain
     p = float(len(left)) / (len(left) + len(right))
     return current_uncertainty - p * gini(left) - (1 - p) * gini(right)
 
@@ -127,7 +123,7 @@ def classify(row, node):
 
 if __name__ == '__main__':
     my_tree = build_tree(training_data)
-    path2 = str(p.parent) + '/test.csv'
+    path2 = str(p.parent) + '/test.csv' # References the current location of the test data
     array2 = []
 
     with open(path2, 'r') as file:
