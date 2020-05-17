@@ -1,8 +1,49 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+! ! ! README ! ! !
 
-\f0\fs24 \cf0 blabla}
+How to use Team Project CSC 1001 program.
+
+
+Name: 
+	main.py
+
+Description: 
+	The project is a machine learning program to handle 
+	csv file with a certain number of features and a label.
+
+	The program will take two inputs from user. 
+	The two inputs are: 
+		Train data ("train.csv")
+		Test data("test.csv")
+	"train.csv" file will be used to make the tree model.
+	"test.csv" file will be used to test the tree model.
+
+	The output of the program is the accuracy percentage of the
+	tree modelwith the test data to whether it has resulted
+	in the same label as the test data.
+
+Dataset used:
+	Dataset 2: Red Wine Quality
+		Classification
+
+Usage:
+	The tree will accept 
+	
+Library used:
+	csv
+	os
+	Path
+
+Function defined: 
+	class_counts
+	is_numeric
+	partition
+	gini
+	info_gain
+	build_tree
+	classify
+
+Class defined:
+	Question
+	Node
+	Leaf
+

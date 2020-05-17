@@ -24,9 +24,6 @@ with open(path, 'r') as file:
 
 training_data = float_list
 
-def unique_vals(rows, col): # Find the unique values for a column in a dataset.
-    return set([row[col] for row in rows])
-
 def class_counts(rows): # Counts the number of each type of sample in a dataset.
     counts = {}         # a dictionary of label -> count.
     for row in rows:    # in our dataset format, the label is always the last column
