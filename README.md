@@ -1,2 +1,2 @@
-# PlaystoreML
-Predicting ratings in the Google Play Store with Machine Learning
+# StoreML
+Predicting ratings of store objects with Machine Learning
